@@ -72,7 +72,7 @@ function App() {
 	return (
 		<div className="min-h-lvh bg-gray-900 flex lg:justify-center items-center flex-col gap-4">
 			<div className="lg:absolute lg:top-16 text-gray-100 text-8xl pt-8 pb-4 font-bold">Yatzy</div>
-			<div className="lg:absolute lg:left-24 pb-4 lg:pb-0">
+			<div className="lg:absolute lg:left-20 pb-4 lg:pb-0">
 				<div className="relative overflow-x-auto shadow-md rounded-lg">
 					<table className="text-center text-gray-400">
 						<thead className="uppercase text-lg bg-gray-700 text-gray-400">
