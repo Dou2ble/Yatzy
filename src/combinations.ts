@@ -166,7 +166,18 @@ export const combinations: Combination[] = [
 
 			return 20
 		}
+	},
+	{
+		name: "Chance",
+		check: (dice: DiceData[]) => {
+			let sum = 0;
 
+			dice.forEach((die) => {
+				sum += die.value
+			})
+
+			return sum;
+		}
 	},
 	{
 		name: "Yatzy",
@@ -188,16 +199,4 @@ export const combinations: Combination[] = [
 			return 0;
 		}
 	},
-	{
-		name: "Chance",
-		check: (dice: DiceData[]) => {
-			let sum = 0;
-
-			dice.forEach((die) => {
-				sum += die.value
-			})
-
-			return sum;
-		}
-	}
 ]
