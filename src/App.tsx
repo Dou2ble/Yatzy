@@ -1,26 +1,12 @@
 // import { useState } from 'react'
 import Button from "./Button"
+import CombinationBoard from "./CombinationBoard";
 import type { DiceData } from "./Dice";
 import { FancyDice } from "./Dice";
 import { useEffect, useState } from "react";
-import { combinations } from "./combinations";
-import _ from "lodash"
+import { newPlayer } from "./player";
 import Modal from "./Modal";
-
-interface Player {
-	name: string,
-	combinationScoreboard: {
-		[key: string]: number
-	}
-}
-
-function newPlayer(name: string): Player {
-	return {
-		name: name,
-		combinationScoreboard: {
-		}
-	}
-}
+import _ from "lodash"
 
 const DICE_COUNT = 5;
 const ROLL_COUNT = 3;
@@ -110,44 +96,19 @@ export default function App() {
 
 			<header className="text-center text-gray-100 text-8xl pt-8 pb-4 lg:pt-20 lg:pb-0 font-bold">Yatzy</header>
 			<aside className="lg:absolute lg:left-20 lg:h-lvh lg:flex lg:justify-center lg:items-center py-8 lg:py-0">
-				<div className="relative overflow-x-auto shadow-md rounded-lg">
-					<table className="text-center text-gray-400">
-						<thead>
-							<tr className="uppercase text-lg bg-gray-700 text-gray-400">
-								<th className="px-4">Combination</th>
-								<th className="px-4">Score</th>
-							</tr>
-						</thead>
-						<tbody>
-							{combinations.map((combination, key) => (
-								<tr
-									className={`relative odd:bg-gray-900 even:bg-gray-800 border-b border-gray-700 ${dice != null ? "hover:bg-gray-600 active:bg-gray-500" : ""} transition-all ${combination.name in player.combinationScoreboard ? "line-through decoration-2" : ""}`}
-									key={key}
-								>
-									<td className="px-2 text-left">
-										{combination.name}
-									</td>
-									<td className="px-2">
-										{
-											combination.name in player.combinationScoreboard ? player.combinationScoreboard[combination.name] : (dice != null ? combination.check(dice) : null)
-										}
-									</td>
-									<button className="absolute top-0 left-0 h-full w-full z-10" onClick={() => {
-										if (dice == null) {
-											return
-										}
+				<CombinationBoard
+					dice={dice}
+					player={player}
+					onSubmit={(combinationName: string, combinationScore: number) => {
+						const newPlayer = _.cloneDeep(player);
+						newPlayer.combinationScoreboard[combinationName] = combinationScore
+						setPlayer(newPlayer)
 
-										const newPlayer = _.cloneDeep(player)
-										newPlayer.combinationScoreboard[combination.name] = combination.check(dice)
-										setPlayer(newPlayer);
-										setRolls(ROLL_COUNT);
-										setDice(null);
-									}}></button>
-								</tr>
-							))}
-						</tbody>
-					</table>
-				</div>
+						setPlayer(newPlayer);
+						setRolls(ROLL_COUNT);
+						setDice(null);
+					}}
+				/>
 			</aside>
 			<main className="lg:flex-1 flex justify-center items-center">
 				<div className="lg:pb-34 flex items-center justify-center flex-col gap-4">
