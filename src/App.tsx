@@ -4,7 +4,7 @@ import type { DiceData } from "./Dice";
 import { FancyDice } from "./Dice";
 import { useEffect, useState } from "react";
 import { combinations } from "./combinations";
-import _, { divide } from "lodash"
+import _ from "lodash"
 import Modal from "./Modal";
 
 interface Player {
