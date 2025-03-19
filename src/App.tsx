@@ -4,7 +4,7 @@ import type { DiceData } from "./Dice";
 import { FancyDice } from "./Dice";
 import { useEffect, useState } from "react";
 import { combinations } from "./combinations";
-import _ from "lodash"
+import _, { divide } from "lodash"
 import Modal from "./Modal";
 
 interface Player {
@@ -84,7 +84,7 @@ export default function App() {
 
 
 	return (
-		<div className="min-h-lvh bg-gray-900 flex lg:justify-center items-center flex-col gap-4">
+		<div className="min-h-lvh h-full bg-gray-900 flex flex-col items-center">
 			{isCheatMenuOpen ?
 				<Modal>
 					<h1 className="text-xl pb-4">Cheats</h1>
@@ -108,18 +108,21 @@ export default function App() {
 				</Modal> : null
 			}
 
-			<div className="lg:absolute lg:top-16 text-gray-100 text-8xl pt-8 pb-4 font-bold">Yatzy</div>
-			<div className="lg:absolute lg:left-20 pb-4 lg:pb-0">
+			<header className="text-center text-gray-100 text-8xl pt-8 pb-4 lg:pb-0 font-bold">Yatzy</header>
+			<aside className="lg:absolute lg:left-20 lg:h-lvh lg:flex lg:justify-center lg:items-center py-8 lg:py-0">
 				<div className="relative overflow-x-auto shadow-md rounded-lg">
 					<table className="text-center text-gray-400">
-						<thead className="uppercase text-lg bg-gray-700 text-gray-400">
-							<th className="px-4">Combination</th>
-							<th className="px-4">Score</th>
+						<thead>
+							<tr className="uppercase text-lg bg-gray-700 text-gray-400">
+								<th className="px-4">Combination</th>
+								<th className="px-4">Score</th>
+							</tr>
 						</thead>
 						<tbody>
-							{combinations.map((combination) => (
+							{combinations.map((combination, key) => (
 								<tr
 									className={`relative odd:bg-gray-900 even:bg-gray-800 border-b border-gray-700 ${dice != null ? "hover:bg-gray-600 active:bg-gray-500" : ""} transition-all ${combination.name in player.combinationScoreboard ? "line-through decoration-2" : ""}`}
+									key={key}
 								>
 									<td className="px-2 text-left">
 										{combination.name}
@@ -145,16 +148,20 @@ export default function App() {
 						</tbody>
 					</table>
 				</div>
-			</div>
-			<div className="flex gap-2 items-center min-h-16">
-				{dice != null &&
-					dice.map((dice, i) => (
-						<button onClick={() => toggleDiceLock(i)}><FancyDice value={dice.value} isLocked={dice.isLocked} /></button>
-					)) ||
-					<strong className="text-gray-200 text-2xl">Please roll the dice</strong>
-				}
-			</div>
-			<Button label="Roll" onClick={rollDice} disabled={rolls < 1} autofocus />
-		</div >
+			</aside>
+			<main className="lg:flex-1 flex justify-center items-center">
+				<div className="lg:pb-24 flex items-center justify-center flex-col gap-4">
+					<div className="flex gap-2 items-center min-h-16 ">
+						{dice != null &&
+							dice.map((dice, i) => (
+								<button onClick={() => toggleDiceLock(i)}><FancyDice value={dice.value} isLocked={dice.isLocked} /></button>
+							)) ||
+							<strong className="text-gray-200 text-2xl text-center">Please roll the dice</strong>
+						}
+					</div>
+					<Button label="Roll" onClick={rollDice} disabled={rolls < 1} autofocus />
+				</div>
+			</main >
+		</div>
 	)
 }
