@@ -131,6 +131,38 @@ export const combinations: Combination[] = [
 		}
 	},
 	{
+		name: "Full House",
+		check: (dice: DiceData[]) => {
+			let pair_count = 0;
+			let result = 0;
+			let containsThreeOfAKind = false;
+
+			for (let i = 6; i > 0 && pair_count < 2; i--) {
+				let occurances = 0;
+
+				dice.forEach((die) => {
+					if (die.value == i) {
+						occurances++;
+					}
+				})
+
+				if (occurances >= 2) {
+					if (occurances == 3) {
+						containsThreeOfAKind = true;
+					}
+					result += i * occurances;
+					pair_count++;
+				}
+			}
+
+			if (pair_count == 2 && containsThreeOfAKind) {
+				return result;
+			}
+			return 0;
+
+		}
+	},
+	{
 		name: "Small Straight",
 		check: (dice: DiceData[]) => {
 			for (let i = 1; i < 5; i++) {
