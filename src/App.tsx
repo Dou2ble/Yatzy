@@ -115,7 +115,7 @@ export default function App() {
 					<div className="flex gap-2 items-center min-h-16 ">
 						{dice != null &&
 							dice.map((dice, i) => (
-								<button onClick={() => toggleDiceLock(i)}><FancyDice value={dice.value} isLocked={dice.isLocked} /></button>
+								<button key={i} onClick={() => toggleDiceLock(i)}><FancyDice value={dice.value} isLocked={dice.isLocked} /></button>
 							)) ||
 							<strong className="text-gray-200 text-2xl text-center">Please roll the dice</strong>
 						}
