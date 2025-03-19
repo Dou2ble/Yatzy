@@ -2,9 +2,10 @@
 import Button from "./Button"
 import type { DiceData } from "./Dice";
 import { FancyDice } from "./Dice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { combinations } from "./combinations";
 import _ from "lodash"
+import Modal from "./Modal";
 
 interface Player {
 	name: string,
@@ -28,6 +29,7 @@ export default function App() {
 	const [dice, setDice] = useState(null as null | DiceData[])
 	const [rolls, setRolls] = useState(ROLL_COUNT);
 	const [player, setPlayer] = useState(newPlayer("Otto"));
+	const [isCheatMenuOpen, setIsCheatMenuOpen] = useState(false);
 
 	function randomDiceValue(): number {
 		return Math.floor(Math.random() * 6 + 1)
@@ -49,7 +51,7 @@ export default function App() {
 		setRolls(rolls - 1)
 	}
 
-	function toggleLock(i: number) {
+	function toggleDiceLock(i: number) {
 		if (dice == null) {
 			return
 		}
@@ -59,8 +61,53 @@ export default function App() {
 		setDice(newDice)
 	}
 
+	function handleKeyDown(event: KeyboardEvent) {
+		if (event.repeat) {
+			return
+		}
+
+		// control + alt + c
+		if (event.ctrlKey && event.altKey && event.key == "c") {
+			setIsCheatMenuOpen(prevState => !prevState);
+			console.log("cheat menu toggled")
+		}
+	}
+
+	useEffect(() => {
+		window.addEventListener("keydown", handleKeyDown)
+
+		// Cleanup function to remove the event listener
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown);
+		};
+	}, []);
+
+
 	return (
 		<div className="min-h-lvh bg-gray-900 flex lg:justify-center items-center flex-col gap-4">
+			{isCheatMenuOpen ?
+				<Modal>
+					<h1 className="text-xl pb-4">Cheats</h1>
+					{dice == null ?
+						<p>Please roll the dice to access the cheat menu</p> :
+						<div className="flex gap-4">
+							{dice?.map((die, i) => (
+								<div>
+									<div>
+										die {i}
+									</div>
+									<input className="bg-gray-700 rounded-md p-2" type="number" value={die.value} max={6} min={1} onChange={(event) => {
+										const newDice = [...dice]
+										newDice[i].value = parseInt(event.target.value);
+										setDice(newDice);
+									}} />
+								</div>
+							))}
+						</div>
+					}
+				</Modal> : null
+			}
+
 			<div className="lg:absolute lg:top-16 text-gray-100 text-8xl pt-8 pb-4 font-bold">Yatzy</div>
 			<div className="lg:absolute lg:left-20 pb-4 lg:pb-0">
 				<div className="relative overflow-x-auto shadow-md rounded-lg">
@@ -102,7 +149,7 @@ export default function App() {
 			<div className="flex gap-2 items-center min-h-16">
 				{dice != null &&
 					dice.map((dice, i) => (
-						<button onClick={() => toggleLock(i)}><FancyDice value={dice.value} isLocked={dice.isLocked} /></button>
+						<button onClick={() => toggleDiceLock(i)}><FancyDice value={dice.value} isLocked={dice.isLocked} /></button>
 					)) ||
 					<strong className="text-gray-200 text-2xl">Please roll the dice</strong>
 				}
