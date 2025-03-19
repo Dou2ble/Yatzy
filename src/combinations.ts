@@ -84,7 +84,10 @@ export const combinations: Combination[] = [
 				}
 			}
 
-			return result;
+			if (pair_count == 2) {
+				return result;
+			}
+			return 0;
 		}
 	},
 	{
