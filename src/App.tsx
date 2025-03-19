@@ -84,7 +84,7 @@ export default function App() {
 
 
 	return (
-		<div className="min-h-lvh h-full bg-gray-900 flex flex-col items-center">
+		<div className="min-h-lvh h-full bg-gray-900 flex flex-col">
 			{isCheatMenuOpen ?
 				<Modal>
 					<h1 className="text-xl pb-4">Cheats</h1>
@@ -108,7 +108,7 @@ export default function App() {
 				</Modal> : null
 			}
 
-			<header className="text-center text-gray-100 text-8xl pt-8 pb-4 lg:pb-0 font-bold">Yatzy</header>
+			<header className="text-center text-gray-100 text-8xl pt-8 pb-4 lg:pt-20 lg:pb-0 font-bold">Yatzy</header>
 			<aside className="lg:absolute lg:left-20 lg:h-lvh lg:flex lg:justify-center lg:items-center py-8 lg:py-0">
 				<div className="relative overflow-x-auto shadow-md rounded-lg">
 					<table className="text-center text-gray-400">
@@ -150,7 +150,7 @@ export default function App() {
 				</div>
 			</aside>
 			<main className="lg:flex-1 flex justify-center items-center">
-				<div className="lg:pb-24 flex items-center justify-center flex-col gap-4">
+				<div className="lg:pb-34 flex items-center justify-center flex-col gap-4">
 					<div className="flex gap-2 items-center min-h-16 ">
 						{dice != null &&
 							dice.map((dice, i) => (
