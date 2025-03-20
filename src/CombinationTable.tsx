@@ -14,7 +14,7 @@ function Row(props: {
       className={`relative odd:bg-gray-850 even:bg-gray-900 border-b border-gray-700 transition-all ${props.dice != null ? "hover:bg-gray-600 hover:text-gray-200 active:bg-gray-500 active:text-gray-100" : ""}`}
     >
       <th
-        className={`px-2 text-left ${props.combination.name in props.player.combinationScoreboard ? "line-through" : ""}`}
+        className={`px-2 text-left ${props.combination.name in props.player.combinationScoreboard ? "line-through decoration-2" : ""}`}
       >
         {props.combination.name}
       </th>
