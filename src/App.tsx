@@ -76,7 +76,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-lvh h-full bg-gray-800 flex flex-col items-center">
+    <div className="min-h-lvh h-full bg-gray-800 flex flex-col items-center overflow-x-hidden">
       <Modal
         title="Cheat menu"
         onClose={() => {
