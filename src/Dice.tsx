@@ -57,10 +57,11 @@ export default function Dice(props: DiceData) {
       title={`Value: ${props.value} ${props.isLocked ? "(locked)" : ""}`}
     >
       <div className="grid grid-cols-3 grid-rows-3 gap-1">
-        {diceGrid(props.value).map((row) =>
-          row.map((dot) => (
+        {diceGrid(props.value).map((row, i) =>
+          row.map((dot, j) => (
             <div
               className={`size-2.5 transition-all ${dot ? `rounded-full ${props.isLocked ? "bg-primary" : "bg-gray-200"}` : ""}`}
+              key={j * 3 + i}
             >
               {dot}
             </div>
