@@ -28,6 +28,18 @@ function diceContains(dice: DiceData[], value: number): boolean {
   return false;
 }
 
+function countOccurances(dice: DiceData[], value: number): number {
+  let occurances = 0;
+
+  for (let i = 0; i < dice.length; i++) {
+    if (dice[i].value == value) {
+      occurances++;
+    }
+  }
+
+  return occurances;
+}
+
 export const combinations: Combination[] = [
   {
     name: "Ones",
@@ -57,15 +69,7 @@ export const combinations: Combination[] = [
     name: "One Pair",
     check: (dice: DiceData[]) => {
       for (let i = 6; i > 0; i--) {
-        let occurances = 0;
-
-        dice.forEach((die) => {
-          if (die.value == i) {
-            occurances++;
-          }
-        });
-
-        if (occurances >= 2) {
+        if (countOccurances(dice, i) >= 2) {
           return i * 2;
         }
       }
@@ -80,15 +84,7 @@ export const combinations: Combination[] = [
       let result = 0;
 
       for (let i = 6; i > 0 && pair_count < 2; i--) {
-        let occurances = 0;
-
-        dice.forEach((die) => {
-          if (die.value == i) {
-            occurances++;
-          }
-        });
-
-        if (occurances >= 2) {
+        if (countOccurances(dice, i) >= 2) {
           result += i * 2;
           pair_count++;
         }
@@ -104,15 +100,7 @@ export const combinations: Combination[] = [
     name: "Three of a Kind",
     check: (dice: DiceData[]) => {
       for (let i = 6; i > 0; i--) {
-        let occurances = 0;
-
-        dice.forEach((die) => {
-          if (die.value == i) {
-            occurances++;
-          }
-        });
-
-        if (occurances >= 3) {
+        if (countOccurances(dice, i) >= 3) {
           return i * 3;
         }
       }
@@ -124,15 +112,7 @@ export const combinations: Combination[] = [
     name: "Four of a Kind",
     check: (dice: DiceData[]) => {
       for (let i = 6; i > 0; i--) {
-        let occurances = 0;
-
-        dice.forEach((die) => {
-          if (die.value == i) {
-            occurances++;
-          }
-        });
-
-        if (occurances >= 4) {
+        if (countOccurances(dice, i) >= 4) {
           return i * 4;
         }
       }
@@ -148,13 +128,7 @@ export const combinations: Combination[] = [
       let containsThreeOfAKind = false;
 
       for (let i = 6; i > 0 && pair_count < 2; i--) {
-        let occurances = 0;
-
-        dice.forEach((die) => {
-          if (die.value == i) {
-            occurances++;
-          }
-        });
+        const occurances = countOccurances(dice, i);
 
         if (occurances >= 2) {
           if (occurances == 3) {
@@ -210,16 +184,8 @@ export const combinations: Combination[] = [
   {
     name: "Yatzy",
     check: (dice: DiceData[]) => {
-      for (let i = 6; i > 0; i--) {
-        let occurances = 0;
-
-        dice.forEach((die) => {
-          if (die.value == i) {
-            occurances++;
-          }
-        });
-
-        if (occurances == 5) {
+      for (let i = 1; i < 7; i++) {
+        if (countOccurances(dice, i) == 5) {
           return 50;
         }
       }
