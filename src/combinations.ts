@@ -18,6 +18,16 @@ function upperSectionCheck(value: number): (dice: DiceData[]) => number {
   };
 }
 
+function diceContains(dice: DiceData[], value: number): boolean {
+  for (let i = 0; i < dice.length; i++) {
+    if (dice[i].value == value) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 export const combinations: Combination[] = [
   {
     name: "Ones",
@@ -164,16 +174,8 @@ export const combinations: Combination[] = [
   {
     name: "Small Straight",
     check: (dice: DiceData[]) => {
-      for (let i = 1; i < 5; i++) {
-        let foundI = false;
-
-        dice.forEach((die) => {
-          if (die.value == i) {
-            foundI = true;
-          }
-        });
-
-        if (!foundI) {
+      for (let i = 1; i < 6; i++) {
+        if (!diceContains(dice, i)) {
           return 0;
         }
       }
@@ -184,16 +186,8 @@ export const combinations: Combination[] = [
   {
     name: "Large Straight",
     check: (dice: DiceData[]) => {
-      for (let i = 1; i < 5; i++) {
-        let foundI = false;
-
-        dice.forEach((die) => {
-          if (die.value == i) {
-            foundI = true;
-          }
-        });
-
-        if (!foundI) {
+      for (let i = 2; i < 7; i++) {
+        if (!diceContains(dice, i)) {
           return 0;
         }
       }
