@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-	--font-sans: 'Hack', monospace, sans-serif
+	--font-sans: 'Hack', monospace, sans-serif;
+	--color-primary: #D72834;
+	--color-background: #222222;
 }
 
 @plugin "@iconify/tailwind4";

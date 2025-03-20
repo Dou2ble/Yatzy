@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { newPlayer } from "./player";
 import Modal from "./Modal";
 import _ from "lodash"
+import logo from "./assets/logo.png";
 
 const DICE_COUNT = 5;
 const ROLL_COUNT = 3;
@@ -70,31 +71,29 @@ export default function App() {
 
 
 	return (
-		<div className="min-h-lvh h-full bg-gray-900 flex flex-col">
-			{isCheatMenuOpen ?
-				<Modal>
-					<h1 className="text-xl pb-4">Cheats</h1>
-					{dice == null ?
-						<p>Please roll the dice to access the cheat menu</p> :
-						<div className="flex gap-4">
-							{dice?.map((die, i) => (
+		<div className="min-h-lvh h-full bg-background flex flex-col items-center">
+			<Modal title="Cheat menu" onClose={() => { setIsCheatMenuOpen(false) }} isOpen={isCheatMenuOpen}>
+				{dice == null ?
+					<p>Please roll the dice to access the cheat menu</p> :
+					<div className="flex gap-4">
+						{dice?.map((die, i) => (
+							<div className="bg-gray-700 p-2 rounded-md flex flex-col items-center justify-center">
 								<div>
-									<div>
-										die {i}
-									</div>
-									<input className="bg-gray-700 rounded-md p-2" type="number" value={die.value} max={6} min={1} onChange={(event) => {
-										const newDice = [...dice]
-										newDice[i].value = parseInt(event.target.value);
-										setDice(newDice);
-									}} />
+									die {i + 1}
 								</div>
-							))}
-						</div>
-					}
-				</Modal> : null
-			}
+								<input className="bg-gray-700 rounded-md p-2" type="number" value={die.value} max={6} min={1} onChange={(event) => {
+									const newDice = [...dice]
+									newDice[i].value = parseInt(event.target.value);
+									setDice(newDice);
+								}} />
+							</div>
+						))}
+					</div>
+				}
+			</Modal>
 
-			<header className="text-center text-gray-100 text-8xl pt-8 pb-4 lg:pt-20 lg:pb-0 font-bold">Yatzy</header>
+			<header className="flex justify-center items-center gap-4 text-gray-100 text-8xl pt-8 pb-4 lg:pt-20 lg:pb-0 font-bold"><img src={logo} alt="logo" className="h-[1em] p-2" /> Yatzy</header>
+
 			<aside className="lg:absolute lg:left-20 lg:h-lvh lg:flex lg:justify-center lg:items-center py-8 lg:py-0">
 				<CombinationBoard
 					dice={dice}
@@ -110,6 +109,7 @@ export default function App() {
 					}}
 				/>
 			</aside>
+
 			<main className="lg:flex-1 flex justify-center items-center">
 				<div className="lg:pb-34 flex items-center justify-center flex-col gap-4">
 					<div className="flex gap-2 items-center min-h-16 ">
@@ -123,6 +123,19 @@ export default function App() {
 					<Button label="Roll" onClick={rollDice} disabled={rolls < 1} autofocus />
 				</div>
 			</main >
+
+			<div className="flex justify-center text-gray-500 pt-24 lg:pt-0">
+				<div className="w-[min(64rem,80vw)] flex justify-between pb-8">
+					<button className="flex justify-center items-center gap-1 hover:text-gray-300 transition-all cursor-pointer">
+						<span className="icon-[mdi--github]"></span>
+						github
+					</button>
+					<button className="flex justify-center items-center gap-1 hover:text-gray-300 transition-all cursor-pointer">
+						<span className="icon-[mdi--label-outline]"></span>
+						alpha
+					</button>
+				</div>
+			</div>
 		</div>
 	)
 }
