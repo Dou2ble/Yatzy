@@ -9,6 +9,7 @@ import Modal from "./Modal";
 import _ from "lodash";
 import logo from "./assets/logo.png";
 import Footer from "./Footer";
+import CheatMenu from "./CheatMenu";
 
 const DICE_COUNT = 5;
 const ROLL_COUNT = 3;
@@ -84,32 +85,12 @@ export default function App() {
         }}
         isOpen={isCheatMenuOpen}
       >
-        {dice == null ? (
-          <p>Please roll the dice to access the cheat menu</p>
-        ) : (
-          <div className="flex gap-4">
-            {dice?.map((die, i) => (
-              <div
-                className="bg-gray-700 p-2 rounded-md flex flex-col items-center justify-center"
-                key={i}
-              >
-                <div>die {i + 1}</div>
-                <input
-                  className="bg-gray-700 rounded-md p-2"
-                  type="number"
-                  value={die.value}
-                  max={6}
-                  min={1}
-                  onChange={(event) => {
-                    const newDice = [...dice];
-                    newDice[i].value = parseInt(event.target.value);
-                    setDice(newDice);
-                  }}
-                />
-              </div>
-            ))}
-          </div>
-        )}
+        <CheatMenu
+          dice={dice}
+          onChange={(newDice) => {
+            setDice(newDice);
+          }}
+        />
       </Modal>
 
       <header className="pt-8 pb-4 lg:pt-20 lg:pb-0">
