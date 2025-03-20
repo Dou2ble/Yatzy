@@ -8,6 +8,7 @@ import { newPlayer } from "./player";
 import Modal from "./Modal";
 import _ from "lodash"
 import logo from "./assets/logo.png";
+import Footer from "./Footer";
 
 const DICE_COUNT = 5;
 const ROLL_COUNT = 3;
@@ -123,25 +124,7 @@ export default function App() {
 					<Button label="Roll" onClick={rollDice} disabled={rolls < 1} autofocus />
 				</div>
 			</main >
-
-			<div className="flex justify-center text-gray-500 pt-24 lg:pt-0">
-				<div className="w-[min(64rem,80vw)] flex justify-between pb-8">
-					<a
-						className="flex justify-center items-center gap-1 hover:text-gray-300 transition-all cursor-pointer"
-						href="https://github.com/Dou2ble/Yatzy"
-					>
-						<span className="icon-[mdi--github]"></span>
-						github
-					</a>
-					<a
-						className="flex justify-center items-center gap-1 hover:text-gray-300 transition-all cursor-pointer"
-						href="https://github.com/Dou2ble/Yatzy/tags"
-					>
-						<span className="icon-[mdi--label-outline]"></span>
-						alpha
-					</a>
-				</div>
-			</div>
+			<Footer />
 		</div>
 	)
 }
