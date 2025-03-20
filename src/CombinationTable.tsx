@@ -48,7 +48,7 @@ export default function CombinationTable(props: {
   onSubmit: (combinationName: string, combinationScore: number) => void;
 }) {
   return (
-    <div className="relative overflow-x-auto shadow-md rounded-lg">
+    <div className="relative overflow-x-auto rounded-lg">
       <table className="text-center text-gray-300">
         <thead>
           <tr className="uppercase text-lg bg-gray-700 text-gray-400">
