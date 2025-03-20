@@ -16,12 +16,8 @@ export default function CheatMenu(props: {
           key={i}
         >
           <div>die {i + 1}</div>
-          <input
-            className="bg-gray-700 rounded-md p-2"
-            type="number"
-            value={die.value}
-            max={6}
-            min={1}
+          <select
+            className="border-gray-800 border-2 rounded-sm"
             onChange={(event) => {
               // impossible event, only here to please the typescript compiler
               if (props.dice == null) {
@@ -32,7 +28,16 @@ export default function CheatMenu(props: {
               newDice[i].value = parseInt(event.target.value);
               props.onChange(newDice);
             }}
-          />
+          >
+            {Array.from({ length: 6 }).map((_, i) => (
+              <option
+                className="bg-gray-700 text-gray-200 text-center"
+                value={i + 1}
+              >
+                {i + 1}
+              </option>
+            ))}
+          </select>
         </div>
       ))}
     </div>
