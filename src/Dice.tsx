@@ -3,112 +3,74 @@ export interface DiceData {
   isLocked: boolean;
 }
 
-function Dot() {
-  return <div className="bg-gray-200 size-2.5 rounded-full"></div>;
+function diceGrid(value: number): boolean[][] {
+  switch (value) {
+    case 1:
+      return [
+        [false, false, false],
+        [false, true, false],
+        [false, false, false],
+      ];
+    case 2:
+      return [
+        [false, false, true],
+        [false, false, false],
+        [true, false, false],
+      ];
+    case 3:
+      return [
+        [false, false, true],
+        [false, true, false],
+        [true, false, false],
+      ];
+    case 4:
+      return [
+        [true, false, true],
+        [false, false, false],
+        [true, false, true],
+      ];
+    case 5:
+      return [
+        [true, false, true],
+        [false, true, false],
+        [true, false, true],
+      ];
+    case 6:
+      return [
+        [true, false, true],
+        [true, false, true],
+        [true, false, true],
+      ];
+    default:
+      return [
+        [false, false, false],
+        [false, false, false],
+        [false, false, false],
+      ];
+  }
 }
 
-export function FancyDice(props: DiceData) {
+export default function Dice(props: DiceData) {
   return (
     <div
-      className={`border-4 border-gray-200 size-16 rounded-xl flex justify-center items-center transition-all hover:scale-115 ${props.isLocked ? "bg-red-900" : ""}`}
+      className={`border-4 size-16 rounded-xl flex justify-center items-center transition-all hover:scale-115 ${props.isLocked ? "border-primary" : "border-gray-200"}`}
       title={`Value: ${props.value} ${props.isLocked ? "(locked)" : ""}`}
     >
       <div className="grid grid-cols-3 grid-rows-3 gap-1">
-        {props.value == 1 && (
-          <>
-            <div></div>
-            <div></div>
-            <div></div>
-
-            <div></div>
-            <Dot />
-            <div></div>
-
-            <div></div>
-            <div></div>
-            <div></div>
-          </>
-        )}
-        {props.value == 2 && (
-          <>
-            <div></div>
-            <div></div>
-            <Dot />
-
-            <div></div>
-            <div></div>
-            <div></div>
-
-            <Dot />
-            <div></div>
-            <div></div>
-          </>
-        )}
-        {props.value == 3 && (
-          <>
-            <div></div>
-            <div></div>
-            <Dot />
-
-            <div></div>
-            <Dot />
-            <div></div>
-
-            <Dot />
-            <div></div>
-            <div></div>
-          </>
-        )}
-        {props.value == 4 && (
-          <>
-            <Dot />
-            <div></div>
-            <Dot />
-
-            <div></div>
-            <div></div>
-            <div></div>
-
-            <Dot />
-            <div></div>
-            <Dot />
-          </>
-        )}
-        {props.value == 5 && (
-          <>
-            <Dot />
-            <div></div>
-            <Dot />
-
-            <div></div>
-            <Dot />
-            <div></div>
-
-            <Dot />
-            <div></div>
-            <Dot />
-          </>
-        )}
-        {props.value == 6 && (
-          <>
-            <Dot />
-            <div></div>
-            <Dot />
-
-            <Dot />
-            <div></div>
-            <Dot />
-
-            <Dot />
-            <div></div>
-            <Dot />
-          </>
+        {diceGrid(props.value).map((row) =>
+          row.map((dot) => (
+            <div
+              className={`size-2.5 transition-all ${dot ? `rounded-full ${props.isLocked ? "bg-primary" : "bg-gray-200"}` : ""}`}
+            >
+              {dot}
+            </div>
+          )),
         )}
       </div>
     </div>
   );
 }
 
-FancyDice.defaultProps = {
+Dice.defaultProps = {
   isLocked: false,
 };

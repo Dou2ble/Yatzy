@@ -2,7 +2,7 @@
 import Button from "./Button";
 import CombinationBoard from "./CombinationBoard";
 import type { DiceData } from "./Dice";
-import { FancyDice } from "./Dice";
+import Dice from "./Dice";
 import { useEffect, useState } from "react";
 import { newPlayer } from "./player";
 import Modal from "./Modal";
@@ -135,7 +135,7 @@ export default function App() {
             {(dice != null &&
               dice.map((dice, i) => (
                 <button key={i} onClick={() => toggleDiceLock(i)}>
-                  <FancyDice value={dice.value} isLocked={dice.isLocked} />
+                  <Dice value={dice.value} isLocked={dice.isLocked} />
                 </button>
               ))) || (
               <strong className="text-gray-200 text-2xl text-center">
