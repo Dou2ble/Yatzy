@@ -61,7 +61,7 @@ export default function Dice(props: DiceData) {
           row.map((dot, j) => (
             <div
               className={`size-2.5 transition-all ${dot ? `rounded-full ${props.isLocked ? "bg-primary" : "bg-gray-200"}` : ""}`}
-              key={j * 3 + i}
+              key={`${i}-${j}`}
             >
               {dot}
             </div>
