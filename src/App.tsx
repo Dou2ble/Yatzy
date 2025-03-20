@@ -89,7 +89,10 @@ export default function App() {
         ) : (
           <div className="flex gap-4">
             {dice?.map((die, i) => (
-              <div className="bg-gray-700 p-2 rounded-md flex flex-col items-center justify-center">
+              <div
+                className="bg-gray-700 p-2 rounded-md flex flex-col items-center justify-center"
+                key={i}
+              >
                 <div>die {i + 1}</div>
                 <input
                   className="bg-gray-700 rounded-md p-2"
