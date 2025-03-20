@@ -1,6 +1,6 @@
 // import { useState } from 'react'
 import Button from "./Button";
-import CombinationBoard from "./CombinationBoard";
+import CombinationTable from "./CombinationTable";
 import type { DiceData } from "./Dice";
 import Dice from "./Dice";
 import { useEffect, useState } from "react";
@@ -117,7 +117,7 @@ export default function App() {
       </header>
 
       <aside className="lg:absolute lg:left-20 lg:h-lvh lg:flex lg:justify-center lg:items-center py-8 lg:py-0">
-        <CombinationBoard
+        <CombinationTable
           dice={dice}
           player={player}
           onSubmit={(combinationName: string, combinationScore: number) => {
