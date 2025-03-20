@@ -4,6 +4,8 @@
 	--font-sans: 'Hack', monospace, sans-serif
 }
 
+@plugin "@iconify/tailwind4";
+
 @font-face {
 	font-family: 'Hack';
 	src: url('fonts/hack-regular.woff2?sha=3114f1256') format('woff2'), url('fonts/hack-regular.woff?sha=3114f1256') format('woff');
