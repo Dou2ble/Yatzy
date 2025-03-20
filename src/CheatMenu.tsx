@@ -29,12 +29,13 @@ export default function CheatMenu(props: {
               props.onChange(newDice);
             }}
           >
-            {Array.from({ length: 6 }).map((_, i) => (
+            {Array.from([1, 2, 3, 4, 5, 6]).map((i) => (
               <option
                 className="bg-gray-700 text-gray-200 text-center"
-                value={i + 1}
+                selected={die.value == i}
+                value={i}
               >
-                {i + 1}
+                {i}
               </option>
             ))}
           </select>
