@@ -109,7 +109,7 @@ export default function App() {
         </div>
       </header>
 
-      <aside className="lg:absolute lg:left-20 lg:h-lvh lg:flex lg:justify-center lg:items-center py-8 lg:py-0">
+      <aside className="lg:absolute lg:left-20 lg:h-lvh lg:flex lg:justify-center lg:items-center pb-8 pt-3 lg:pb-0 lg:pt-0">
         <CombinationTable
           dice={dice}
           player={player}
