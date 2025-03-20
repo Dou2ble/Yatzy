@@ -2,6 +2,7 @@ import { combinations } from "./combinations";
 import type { Combination } from "./combinations";
 import { playerTotalScore, type Player } from "./player";
 import type { DiceData } from "./Dice";
+import { useMemo } from "react";
 
 function Row(props: {
   dice: DiceData[] | null;
@@ -9,9 +10,16 @@ function Row(props: {
   combination: Combination;
   onSubmit: (combinationName: string, combinationScore: number) => void;
 }) {
+  const isClickable = useMemo(() => {
+    return !(
+      props.dice == null ||
+      props.combination.name in props.player.combinationScoreboard
+    );
+  }, [props.dice, props.combination.name, props.player]);
+
   return (
     <tr
-      className={`relative odd:bg-gray-850 even:bg-gray-900 border-b border-gray-700 transition-all ${props.dice != null ? "hover:bg-gray-600 hover:text-gray-200 active:bg-gray-500 active:text-gray-100" : ""}`}
+      className={`relative odd:bg-gray-850 even:bg-gray-900 border-b border-gray-700 transition-all ${isClickable ? "hover:bg-gray-600 hover:text-gray-200 active:bg-gray-500 active:text-gray-100" : ""}`}
     >
       <th
         className={`px-2 text-left ${props.combination.name in props.player.combinationScoreboard ? "line-through decoration-2" : ""}`}
@@ -26,15 +34,15 @@ function Row(props: {
             : null}
       </td>
       <button
-        className={`absolute top-0 left-0 h-full w-full z-10 ${props.dice != null ? "cursor-pointer" : ""}`}
+        className={`absolute top-0 left-0 h-full w-full z-10 ${isClickable ? "cursor-pointer" : ""}`}
         onClick={() => {
-          if (props.dice == null) {
+          if (!isClickable) {
             return;
           }
 
           props.onSubmit(
             props.combination.name,
-            props.combination.check(props.dice),
+            props.combination.check(props.dice as DiceData[]),
           );
         }}
       ></button>
