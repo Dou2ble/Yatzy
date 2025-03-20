@@ -126,14 +126,20 @@ export default function App() {
 
 			<div className="flex justify-center text-gray-500 pt-24 lg:pt-0">
 				<div className="w-[min(64rem,80vw)] flex justify-between pb-8">
-					<button className="flex justify-center items-center gap-1 hover:text-gray-300 transition-all cursor-pointer">
+					<a
+						className="flex justify-center items-center gap-1 hover:text-gray-300 transition-all cursor-pointer"
+						href="https://github.com/Dou2ble/Yatzy"
+					>
 						<span className="icon-[mdi--github]"></span>
 						github
-					</button>
-					<button className="flex justify-center items-center gap-1 hover:text-gray-300 transition-all cursor-pointer">
+					</a>
+					<a
+						className="flex justify-center items-center gap-1 hover:text-gray-300 transition-all cursor-pointer"
+						href="https://github.com/Dou2ble/Yatzy/tags"
+					>
 						<span className="icon-[mdi--label-outline]"></span>
 						alpha
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>
