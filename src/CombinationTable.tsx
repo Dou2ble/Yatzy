@@ -1,6 +1,6 @@
 import { combinations } from "./combinations";
 import type { Combination } from "./combinations";
-import type { Player } from "./player";
+import { playerTotalScore, type Player } from "./player";
 import type { DiceData } from "./Dice";
 
 function Row(props: {
@@ -67,6 +67,12 @@ export default function CombinationTable(props: {
             />
           ))}
         </tbody>
+        <tfoot>
+          <tr className={`bg-gray-700 text-gray-400 uppercase font-bold`}>
+            <th className="px-2 text-left">Sum</th>
+            <td className="px-2">{playerTotalScore(props.player)}</td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   );
