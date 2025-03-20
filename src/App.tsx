@@ -112,8 +112,20 @@ export default function App() {
         )}
       </Modal>
 
-      <header className="flex justify-center items-center gap-4 text-gray-100 text-8xl pt-8 pb-4 lg:pt-20 lg:pb-0 font-bold">
-        <img src={logo} alt="logo" className="h-[1em] p-2" /> Yatzy
+      <header className="pt-8 pb-4 lg:pt-20 lg:pb-0">
+        <div className="flex justify-center items-center gap-4 text-gray-100 text-8xl font-bold">
+          <img src={logo} alt="logo" className="h-[1em] p-2" /> Yatzy
+        </div>
+        <div className="pt-4">
+          <div className="h-[2px] bg-gray-900 w-full">
+            <div
+              className="bg-primary h-full transition-all"
+              style={{
+                width: `${(100 / 3) * rolls}%`,
+              }}
+            ></div>
+          </div>
+        </div>
       </header>
 
       <aside className="lg:absolute lg:left-20 lg:h-lvh lg:flex lg:justify-center lg:items-center py-8 lg:py-0">
