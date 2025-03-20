@@ -11,7 +11,7 @@ function Row(props: {
 }) {
   return (
     <tr
-      className={`relative odd:bg-gray-900 even:bg-gray-800 border-b border-gray-700 transition-all ${props.dice != null ? "hover:bg-gray-600 hover:text-gray-200 active:bg-gray-500 active:text-gray-100" : ""}`}
+      className={`relative odd:bg-gray-850 even:bg-gray-900 border-b border-gray-700 transition-all ${props.dice != null ? "hover:bg-gray-600 hover:text-gray-200 active:bg-gray-500 active:text-gray-100" : ""}`}
     >
       <td
         className={`px-2 text-left ${props.combination.name in props.player.combinationScoreboard ? "line-through" : ""}`}
