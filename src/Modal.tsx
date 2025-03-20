@@ -19,7 +19,7 @@ export default function Modal(props: {
           opacity: "1",
         },
       ],
-      { duration: 200, fill: "forwards" },
+      { duration: 100, fill: "forwards" },
     );
   }, [props.isOpen]);
 
