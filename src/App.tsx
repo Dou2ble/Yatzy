@@ -17,7 +17,8 @@ const ROLL_COUNT = 3;
 export default function App() {
   const [dice, setDice] = useState(null as null | DiceData[]);
   const [rolls, setRolls] = useState(ROLL_COUNT);
-  const [player, setPlayer] = useState(newPlayer("Otto"));
+  const [players, setPlayers] = useState([newPlayer("Player 1"), newPlayer("Player 2")]);
+	const [currentPlayer, setCurrentPlayer] = useState(0);
   const [isCheatMenuOpen, setIsCheatMenuOpen] = useState(false);
 
   function randomDiceValue(): number {
@@ -67,6 +68,14 @@ export default function App() {
     }
   }
 
+  function nextPlayer() {
+	  if (currentPlayer >= players.length - 1) {
+		  setCurrentPlayer(0)
+	  } else {
+			setCurrentPlayer(currentPlayer + 1);
+	  }
+  }
+
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
 
@@ -109,24 +118,31 @@ export default function App() {
         </div>
       </header>
 
-      <aside className="lg:absolute lg:left-20 lg:h-lvh lg:flex lg:justify-center lg:items-center pb-8 pt-3 lg:pb-0 lg:pt-0">
+      <aside className="lg:absolute lg:left-20 lg:h-lvh lg:flex lg:flex-col lg:justify-center lg:items-center pb-8 pt-3 lg:pb-0 lg:pt-0">
         <CombinationTable
           dice={dice}
-          player={player}
+          player={players[currentPlayer]}
           onSubmit={(combinationName: string, combinationScore: number) => {
-            const newPlayer = _.cloneDeep(player);
-            newPlayer.combinationScoreboard[combinationName] = combinationScore;
-            setPlayer(newPlayer);
+            const newPlayers = _.cloneDeep(players);
+            newPlayers[currentPlayer].combinationScoreboard[combinationName] = combinationScore;
 
-            setPlayer(newPlayer);
+            setPlayers(newPlayers);
             setRolls(ROLL_COUNT);
             setDice(null);
+						nextPlayer();
           }}
         />
       </aside>
 
       <main className="lg:flex-1 flex justify-center items-center">
         <div className="lg:pb-34 flex items-center justify-center flex-col gap-4">
+	        <div className="flex justify-center items-center pb-1">
+		        <div className="flex justify-center items-center gap-2 text-gray-500 transition-all text-xl">
+							<span className="icon-[mdi--account-outline]"></span>
+		  		    {players[currentPlayer].name}
+		        </div>
+          </div>
+
           <div className="flex gap-2 items-center min-h-16 ">
             {(dice != null &&
               dice.map((dice, i) => (
