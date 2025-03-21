@@ -162,7 +162,6 @@ export default function Game(props: {players: Player[], changePlayers: (players:
           />
         </div>
       </main>
-      <Footer />
 	  </>
   );
 }
