@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import _ from "lodash";
 import logo from "./assets/logo.png";
-import Footer from "./Footer";
 import CheatMenu from "./CheatMenu";
 import { Player } from "./player";
+import Header from "./Header";
 
 const DICE_COUNT = 5;
 const ROLL_COUNT = 3;
@@ -101,21 +101,7 @@ export default function Game(props: {players: Player[], changePlayers: (players:
         />
       </Modal>
 
-      <header className="pt-8 pb-4 lg:pt-20 lg:pb-0">
-        <div className="flex justify-center items-center gap-4 text-gray-100 text-8xl font-bold">
-          <img src={logo} alt="logo" className="h-[1em] p-2" /> Yatzy
-        </div>
-        <div className="pt-4">
-          <div className="h-[2px] bg-gray-900 w-full">
-            <div
-              className="bg-primary h-full transition-all"
-              style={{
-                width: `${(100 / 3) * rolls}%`,
-              }}
-            ></div>
-          </div>
-        </div>
-      </header>
+      <Header barWidth={`${(100 / 3) * rolls}%`} />
 
       <aside className="lg:absolute lg:left-20 lg:h-lvh lg:flex lg:flex-col lg:justify-center lg:items-center pb-8 pt-3 lg:pb-0 lg:pt-0">
         <CombinationTable
