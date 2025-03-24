@@ -5,7 +5,6 @@ import Dice from "./Dice";
 import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import _ from "lodash";
-import logo from "./assets/logo.png";
 import CheatMenu from "./CheatMenu";
 import { Player } from "./player";
 import Header from "./Header";
