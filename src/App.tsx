@@ -45,7 +45,7 @@ export default function App() {
 					<Header barWidth="100%" />
 					<div className="flex-1 flex justify-center items-center">
 						<div className="flex flex-col items-center gap-4 pb-32">
-							<div className="flex flex-col justify-center gap-1.5 items-center pb-1 text-gray-500">
+							<div className="flex flex-col overflow-y-auto max-h-46 justify-center gap-1.5 items-center pb-1 text-gray-500">
 								{players.map((player, i) => (
 									<PlayerNameInput
 										key={i}
