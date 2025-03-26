@@ -25,7 +25,7 @@ function Row(props: {
       className={`relative border-b border-gray-700 transition-all ${props.isSelected ? "bg-primary text-gray-200" : "odd:bg-gray-850 even:bg-gray-900"} ${isClickable ? "hover:bg-primary hover:text-gray-200" : ""}`}
     >
       <th
-        className={`px-2 text-left ${props.combination.name in props.player.combinationScoreboard ? "line-through decoration-2" : ""}`}
+        className={`px-2 text-left ${props.combination.name in props.player.combinationScoreboard ? "text-gray-500 line-through decoration-2" : ""}`}
       >
         {props.combination.name}
       </th>
