@@ -27,7 +27,7 @@ function PlayerNameInput(props: {
 			<div className="absolute top-0 left-0 h-full flex justify-center items-center px-1.5" onClick={() => {inputRef.current?.focus()}}>
 				<span className="icon-[mdi--account-edit]"></span>
 			</div>
-			<div className="absolute top-0 right-0 h-full flex justify-center items-center px-1.5" onClick={props.onDelete}>
+			<div className="absolute top-0 right-0 h-full flex justify-center items-center px-1.5 transition-all hover:text-primary" onClick={props.onDelete}>
 				<span className="icon-[mdi--delete]"></span>
 			</div>
 		</div>
