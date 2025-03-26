@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { newPlayer } from "./player";
 import Game from "./Game";
 import Button from "./Button";
@@ -10,17 +10,20 @@ function PlayerNameInput(props: {
 	value: string;
 	onChange: (value: string) => void;
 }) {
+	const inputRef = useRef<HTMLInputElement>(null);
+
 	return (
 		<div className="relative transition-all text-xl border-gray-500 border-2 rounded-md">
 			<input
 				type="text"
 				value={props.value}
+				ref={inputRef}
 				className="text-center bg-transparent max-w-[88vw]"
 				onChange={(event) => {
 					props.onChange(event.target.value);
 				}}
 			/>
-			<div className="absolute top-0 left-0 h-full flex justify-center items-center pl-1.5">
+			<div className="absolute top-0 left-0 h-full flex justify-center items-center pl-1.5" onClick={() => {inputRef.current?.focus()}}>
 				<span className="icon-[mdi--account-edit]"></span>
 			</div>
 		</div>
