@@ -86,6 +86,7 @@ export default function App() {
 							</strong>
 							<Button
 								label="Start"
+								disabled={players.length != 0}
 								onClick={() => {
 									setIsGameStarted(true);
 								}}
