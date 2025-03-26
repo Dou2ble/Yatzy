@@ -9,6 +9,7 @@ import Header from "./Header";
 function PlayerNameInput(props: {
 	value: string;
 	onChange: (value: string) => void;
+	onDelete: () => void;
 }) {
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -23,8 +24,11 @@ function PlayerNameInput(props: {
 					props.onChange(event.target.value);
 				}}
 			/>
-			<div className="absolute top-0 left-0 h-full flex justify-center items-center pl-1.5" onClick={() => {inputRef.current?.focus()}}>
+			<div className="absolute top-0 left-0 h-full flex justify-center items-center px-1.5" onClick={() => {inputRef.current?.focus()}}>
 				<span className="icon-[mdi--account-edit]"></span>
+			</div>
+			<div className="absolute top-0 right-0 h-full flex justify-center items-center px-1.5" onClick={props.onDelete}>
+				<span className="icon-[mdi--delete]"></span>
 			</div>
 		</div>
 	);
@@ -56,6 +60,11 @@ export default function App() {
 										onChange={(value) => {
 											const newPlayers = _.cloneDeep(players);
 											newPlayers[i].name = value;
+											setPlayers(newPlayers);
+										}}
+										onDelete={() => {
+											const newPlayers = _.cloneDeep(players);
+											newPlayers.splice(i, 1);
 											setPlayers(newPlayers);
 										}}
 									/>
