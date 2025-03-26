@@ -140,11 +140,10 @@ export default function Game(props: {players: Player[], changePlayers: (players:
             )}
           </div>
           <Button
-            label="Roll"
             onClick={rollDice}
             disabled={rolls < 1}
             autofocus
-          />
+          >Roll</Button>
         </div>
       </main>
 	  </>

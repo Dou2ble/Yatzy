@@ -1,5 +1,5 @@
 export default function Button(props: {
-  label: string;
+  children: React.ReactNode;
   disabled: boolean;
   autofocus: boolean;
   onClick: () => void;
@@ -11,7 +11,7 @@ export default function Button(props: {
       disabled={props.disabled}
       autoFocus={props.autofocus}
     >
-      {props.label}
+      {props.children}
     </button>
   );
 }

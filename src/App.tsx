@@ -85,12 +85,11 @@ export default function App() {
 								Select players and start the game
 							</strong>
 							<Button
-								label="Start"
 								disabled={players.length == 0}
 								onClick={() => {
 									setIsGameStarted(true);
 								}}
-							/>
+							>Start</Button>
 						</div>
 					</div>
 				</>
