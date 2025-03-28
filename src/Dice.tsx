@@ -63,7 +63,6 @@ export default function Dice(props: DiceData) {
               className={`size-2.5 transition-all ${dot ? `rounded-full ${props.isLocked ? "bg-primary" : "bg-gray-200"}` : ""}`}
               key={`${i}-${j}`}
             >
-              {dot}
             </div>
           )),
         )}
