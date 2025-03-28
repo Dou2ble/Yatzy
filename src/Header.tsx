@@ -1,10 +1,31 @@
-import logo from "./assets/logo.png"
+import diceGrid from "./diceGrid";
+
+function Logo() {
+	return (
+		<div
+      className={`border-6 size-24 rounded-xl flex justify-center items-center transition-all border-primary`}
+    >
+      <div className="grid grid-cols-3 grid-rows-3 gap-1.5">
+        {diceGrid(5).map((row, i) =>
+          row.map((dot, j) => (
+            <div
+							className={`size-3.75 transition-all ${dot ? "rounded-full bg-primary" : ""}`}
+              key={`${i}-${j}`}
+            >
+            </div>
+          )),
+        )}
+      </div>
+    </div>
+	);
+}
 
 export default function Header(props: { barWidth: string }) {
 	return (
 		<header className="pt-8 pb-4 lg:pt-20 lg:pb-0">
 			<div className="flex justify-center items-center gap-4 text-gray-100 text-8xl font-bold">
-				<img src={logo} alt="logo" className="h-[1em] p-2" /> Yatzy
+				{/* <img src={logo} alt="logo" className="h-[1em] p-2" /> Yatzy */}
+				<Logo /> Yatzy
 			</div>
 			<div className="pt-4">
 				<div className="h-[2px] bg-gray-900 w-full">
