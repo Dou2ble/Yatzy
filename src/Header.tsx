@@ -3,13 +3,13 @@ import diceGrid from "./diceGrid";
 function Logo() {
 	return (
 		<div
-      className={`border-6 size-24 rounded-xl flex justify-center items-center transition-all border-primary`}
+      className={`border-5 size-20 rounded-xl flex justify-center items-center transition-all border-primary`}
     >
-      <div className="grid grid-cols-3 grid-rows-3 gap-1.5">
+      <div className="grid grid-cols-3 grid-rows-3 gap-1.25">
         {diceGrid(5).map((row, i) =>
           row.map((dot, j) => (
             <div
-							className={`size-3.75 transition-all ${dot ? "rounded-full bg-primary" : ""}`}
+							className={`size-[0.78125rem] transition-all ${dot ? "rounded-full bg-primary" : ""}`}
               key={`${i}-${j}`}
             >
             </div>
