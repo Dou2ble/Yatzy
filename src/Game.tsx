@@ -2,12 +2,13 @@ import Button from "./Button";
 import CombinationTable from "./CombinationTable";
 import type { DiceData } from "./Dice";
 import Dice from "./Dice";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Modal from "./Modal";
 import _ from "lodash";
 import CheatMenu from "./CheatMenu";
 import { Player } from "./player";
 import Header from "./Header";
+import { combinations } from "./combinations";
 
 const DICE_COUNT = 5;
 const ROLL_COUNT = 3;
@@ -18,6 +19,16 @@ export default function Game(props: {players: Player[], changePlayers: (players:
   // const [players, setPlayers] = useState([newPlayer("Player 1"), newPlayer("Player 2")]);
 	const [currentPlayer, setCurrentPlayer] = useState(0);
   const [isCheatMenuOpen, setIsCheatMenuOpen] = useState(false);
+
+  const isGameEnded = useMemo(() => {
+		for (let i = 0; i < props.players.length; i++) {
+			if (Object.keys(props.players[i].combinationScoreboard).length != combinations.length) {
+				return false
+			}
+		}
+
+		return true;
+  }, [props.players])
 
   function randomDiceValue(): number {
     return Math.floor(Math.random() * 6 + 1);
