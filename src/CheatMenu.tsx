@@ -9,6 +9,7 @@ export default function CheatMenu(props: {
 	onDiceChange: (newDice: DiceData[]) => void;
 	players: Player[];
 	onPlayerChange: (players: Player[]) => void;
+	isGameEnded: boolean;
 }) {
 	return (
 		<>
@@ -51,6 +52,7 @@ export default function CheatMenu(props: {
 
 			<div className="flex justify-center items-center">
 				<Button
+					disabled={props.isGameEnded}
 					onClick={() => {
 						const newPlayers = _.cloneDeep(props.players);
 

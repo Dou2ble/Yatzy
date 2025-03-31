@@ -104,6 +104,7 @@ export default function Game(props: {players: Player[], changePlayers: (players:
         isOpen={isCheatMenuOpen}
       >
         <CheatMenu
+	        isGameEnded={isGameEnded}
 	        players={props.players}
 	        onPlayerChange={props.changePlayers}
           dice={dice}
