@@ -47,7 +47,7 @@ export default function Modal(props: {
           </button>
         </div>
         <hr className="border-gray-600" />
-        <div className="p-10 text-lg">{props.children}</div>
+        <div className="flex flex-col gap-5 p-10 text-lg">{props.children}</div>
       </div>
     </div>
   );

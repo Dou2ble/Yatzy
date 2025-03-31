@@ -104,8 +104,10 @@ export default function Game(props: {players: Player[], changePlayers: (players:
         isOpen={isCheatMenuOpen}
       >
         <CheatMenu
+	        players={props.players}
+	        onPlayerChange={props.changePlayers}
           dice={dice}
-          onChange={(newDice) => {
+          onDiceChange={(newDice) => {
             setDice(newDice);
           }}
         />
