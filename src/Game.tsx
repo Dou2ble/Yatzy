@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import Modal from "./Modal";
 import _ from "lodash";
 import CheatMenu from "./CheatMenu";
-import { Player } from "./player";
+import { Player, playerTotalScore } from "./player";
 import Header from "./Header";
 import { combinations } from "./combinations";
 
@@ -28,6 +28,24 @@ export default function Game(props: {players: Player[], changePlayers: (players:
 		}
 
 		return true;
+  }, [props.players])
+
+  const winners: {names: string[], score: number} = useMemo(() => {
+		let bestPlayers: string[] = [];
+		let bestScore = -1;
+
+		props.players.forEach((player) => {
+			const score = playerTotalScore(player)
+
+			if (score == bestScore) {
+				bestPlayers.push(player.name)
+			} else if (score > bestScore) {
+				bestPlayers = [player.name]
+				bestScore = score
+			}
+		})
+
+		return {names: bestPlayers, score: bestScore}
   }, [props.players])
 
   function randomDiceValue(): number {
@@ -112,6 +130,16 @@ export default function Game(props: {players: Player[], changePlayers: (players:
             setDice(newDice);
           }}
         />
+      </Modal>
+
+      <Modal
+      	title="Game Has Ended"
+       	onClose={() => {
+        location.reload()
+        }}
+        isOpen={isGameEnded}
+      >
+				<div>The {winners.names.length > 1 ? "winners are" : "winner is"} {winners.names.join(" and ")} with a score of {winners.score} points!</div>
       </Modal>
 
       <Header barWidth={`${(100 / 3) * rolls}%`} />

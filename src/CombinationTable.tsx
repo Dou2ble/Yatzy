@@ -1,6 +1,6 @@
 import { combinations } from "./combinations";
 import type { Combination } from "./combinations";
-import { playerTotalScore, type Player } from "./player";
+import { playerBonusScore, playerTotalScore, type Player } from "./player";
 import type { DiceData } from "./Dice";
 import { useMemo, useState } from "react";
 import Button from "./Button";
@@ -79,7 +79,11 @@ export default function CombinationTable(props: {
           ))}
         </tbody>
         <tfoot>
-          <tr className={`bg-gray-700 text-gray-400 uppercase font-bold`}>
+	        <tr className="bg-gray-800 text-gray-400 uppercase font-bold">
+            <th className="px-2 text-left">Bonus</th>
+            <td className="px-2">{playerBonusScore(props.player)}</td>
+          </tr>
+          <tr className="bg-gray-700 text-gray-400 uppercase font-bold">
             <th className="px-2 text-left">Sum</th>
             <td className="px-2">{playerTotalScore(props.player)}</td>
           </tr>
