@@ -11,11 +11,11 @@
     --color-gray-600: #757575;
     --color-gray-700: #282828;
     --color-gray-800: #212121;
-    --color-gray-850: #181818; /* New mid-dark shade */
-    --color-gray-900: #151515; /* Brightened from #0d0d0d → #121212 */
+    --color-gray-850: #181818;
+    --color-gray-900: #151515;
     --color-gray-950: #030303;
 
-    --color-primary: #d72834; /* Your base color */
+    --color-primary: #d72834;
 }
 
 @plugin "@iconify/tailwind4";
