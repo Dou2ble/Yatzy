@@ -19,13 +19,13 @@ function PlayerNameInput(props: {
 				type="text"
 				value={props.value}
 				ref={inputRef}
-				className="text-center bg-transparent max-w-[88vw]"
+				className="text-center bg-transparent max-w-[88vw] player-name-input"
 				onChange={(event) => {
 					props.onChange(event.target.value);
 				}}
 			/>
 			<div className="absolute top-0 left-0 h-full flex justify-center items-center px-1.5" onClick={() => {inputRef.current?.focus()}}>
-				<span className="icon-[mdi--account-edit]"></span>
+				<span className="icon-[mdi--account]"></span>
 			</div>
 			<div className="absolute top-0 right-0 h-full flex justify-center items-center px-1.5 transition-all hover:text-primary" onClick={props.onDelete}>
 				<span className="icon-[mdi--delete]"></span>
