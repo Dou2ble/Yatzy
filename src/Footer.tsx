@@ -21,7 +21,7 @@ export default function Footer() {
         </FooterLink>
         <FooterLink href="https://github.com/Dou2ble/Yatzy/releases/tag/v1.0.0">
           <span className="icon-[mdi--tag-outline]"></span>
-          v1.0.0
+          {APP_VERSION}
         </FooterLink>
       </div>
     </div>
