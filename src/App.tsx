@@ -19,7 +19,7 @@ function PlayerNameInput(props: {
 				type="text"
 				value={props.value}
 				ref={inputRef}
-				className="text-center bg-transparent max-w-[88vw] player-name-input"
+				className="text-center bg-transparent max-w-[88vw]"
 				onChange={(event) => {
 					props.onChange(event.target.value);
 				}}
