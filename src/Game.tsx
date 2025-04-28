@@ -162,12 +162,10 @@ export default function Game(props: {players: Player[], changePlayers: (players:
 
       <main className="lg:flex-1 flex justify-center items-center">
         <div className="lg:pb-34 flex items-center justify-center flex-col gap-4">
-	        <div className="flex justify-center items-center pb-1">
-		        <div className="flex justify-center items-center gap-2 text-gray-500 transition-all text-xl">
-							<span className="icon-[mdi--account-outline]"></span>
-		  		    {props.players[currentPlayer].name}
-		        </div>
-          </div>
+	        <div key={currentPlayer} className="flex justify-center items-center pb-1 gap-2 text-gray-500 transition-all text-xl current-player-label">
+						<span className="icon-[mdi--account-outline]"></span>
+	  		    {props.players[currentPlayer].name}
+	        </div>
 
           <div className="flex gap-2 items-center min-h-16 ">
             {(dice != null &&

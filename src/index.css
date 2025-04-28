@@ -55,3 +55,18 @@
     font-weight: 700;
     font-style: italic;
 }
+
+@keyframes player-change {
+	from {
+		transform: scale(300%);
+		color: var(--color-gray-200);
+	}
+	to {
+		transform: scale(100%);
+		color: var(--color-gray-500);
+	}
+}
+
+.current-player-label {
+	animation: player-change 1.0s ease-in forwards;
+}
