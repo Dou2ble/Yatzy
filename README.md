@@ -19,6 +19,10 @@ Visit the [public webpage](https://yatzy.otto.romi.ng).
 - install all requiered dependencies with bun `bun i`
 - launch the webserver locally `bun preview`
 
+## Screenshots
+
+![Yatzy Game Screenshot](https://github.com/Dou2ble/Yatzy/blob/main/screenshots/game.png?raw=true)
+
 ## Credits
 
 - Material icons licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.html).
