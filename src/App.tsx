@@ -18,16 +18,25 @@ function PlayerNameInput(props: {
 			<input
 				type="text"
 				value={props.value}
+				aria-label={`${props.value} name`}
 				ref={inputRef}
 				className="text-center bg-transparent max-w-[88vw]"
 				onChange={(event) => {
 					props.onChange(event.target.value);
 				}}
 			/>
-			<div className="absolute top-0 left-0 h-full flex justify-center items-center px-1.5" onClick={() => {inputRef.current?.focus()}}>
+			<div
+				className="absolute top-0 left-0 h-full flex justify-center items-center px-1.5"
+				onClick={() => {
+					inputRef.current?.focus();
+				}}
+			>
 				<span className="icon-[mdi--account]"></span>
 			</div>
-			<div className="absolute top-0 right-0 h-full flex justify-center items-center px-1.5 transition-all hover:text-primary" onClick={props.onDelete}>
+			<div
+				className="absolute top-0 right-0 h-full flex justify-center items-center px-1.5 transition-all hover:text-primary"
+				onClick={props.onDelete}
+			>
 				<span className="icon-[mdi--delete]"></span>
 			</div>
 		</div>
@@ -71,6 +80,7 @@ export default function App() {
 								))}
 								<button
 									className="flex justify-center items-center border-gray-500 border-2 rounded-md p-1 transition-all hover:text-gray-300 hover:border-gray-300"
+									aria-label="add account"
 									onClick={() => {
 										setPlayers((previous) => [
 											...previous,
@@ -89,7 +99,9 @@ export default function App() {
 								onClick={() => {
 									setIsGameStarted(true);
 								}}
-							>Start</Button>
+							>
+								Start
+							</Button>
 						</div>
 					</div>
 				</>
